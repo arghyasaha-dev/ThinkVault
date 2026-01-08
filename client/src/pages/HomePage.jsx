@@ -37,16 +37,23 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
             <Navbar />
             {isRateLimited && <RateLimitedUI />}
-            <div>
-                {isLoading && <div>Loading notes ...</div>}
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                {isLoading && (
+                  <div className="flex flex-col items-center justify-center min-h-[50vh]">
+                    <div className="inline-flex items-center justify-center">
+                      <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-gray-200 border-t-violet-600 rounded-full animate-spin"></div>
+                    </div>
+                    <p className="mt-4 text-gray-600 font-medium">Loading notes ...</p>
+                  </div>
+                )}
 
                 {notes.length === 0 && !isRateLimited && <NoNotes />}
 
                 {notes.length > 0 && !isRateLimited && (
-                    <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {notes.map(ele => {
                             return <NoteCard key={ele._id} note={ele} setNotes={setNotes} />
                         })}

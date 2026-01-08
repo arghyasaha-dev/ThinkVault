@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .scale-102 {
+        @apply scale-[1.02];
+    }
+
+    .scale-98 {
+        @apply scale-[0.98];
+    }
+}

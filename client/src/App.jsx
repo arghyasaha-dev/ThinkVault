@@ -8,7 +8,7 @@ import ShowAndUpdatePage from './pages/ShowAndUpdatePage.jsx';
 
 const App = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-white">
       <Routes>
         <Route path="/notes" element={<HomePage />} />
         <Route path="/notes/create" element={<CreatePage />} />

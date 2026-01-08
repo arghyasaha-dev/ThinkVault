@@ -10,6 +10,14 @@ app.use(methodOverride("_method"));
 app.use(express.json());
 
 
+const cors = require("cors"); // To resolve cors error caused by react dev server (frontend) talking to node server (backend)
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+
+
+
+
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI)
     .then((succ) => {
@@ -19,13 +27,17 @@ mongoose.connect(process.env.MONGO_URI)
         console.log("Could not connect to DB");
     })
 
+
+
 const noteRoutes = require("./routes/notes.js");
 app.use("/api/notes", noteRoutes);
+
+
 
 //Error Handling Middlewares 
 const ExpressError = require("./utils/ExpressError.js");
 app.all(/(.*)/, (req, res, next) => {
-    next(new ExpressError({ status: 404, message: "Page not found" }));
+    next(new ExpressError(404, "Page not found"));
 })
 app.use((err, req, res, next) => {
     const status = err.status || 500;

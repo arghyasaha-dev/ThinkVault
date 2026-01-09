@@ -12,7 +12,8 @@ app.use(express.json());
 
 const cors = require("cors"); // To resolve cors error caused by react dev server (frontend) talking to node server (backend)
 app.use(cors({
-    origin: "http://localhost:5173"
+    // origin: "http://localhost:5173"
+    origin: true // works for all react dev (vite) frontend server domains (also for vercel domain)
 }));
 
 
